@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+
+*.py[cod]
+.idea
+
+.replit
+pyproject.toml
+poetry.lock
+
+build/
+dist/
+*.egg-info
