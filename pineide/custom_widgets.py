@@ -4,7 +4,8 @@ from textual.widget import Widget
 from textual import events
 from textual.reactive import watch, Reactive
 
-from rich.table import Table
+from rich.panel import Panel
+from rich.containers import Renderables
 
 
 class CustomHeader(Widget):
@@ -19,15 +20,12 @@ class CustomHeader(Widget):
         return str(delta).split('.')[0]
 
     def render(self):
-        header_table = Table.grid(expand=True)
-        header_table.style = self.style
-        header_table.add_column(justify="left", ratio=0, width=12)
-        header_table.add_column("title", justify="center", ratio=1)
-        header_table.add_column("time_elapsed", justify="right", width=12)
-        header_table.add_row(
-            "PineIDE :evergreen_tree:", "<opened_file>", self.calculate_time_elapsed()
+        return Panel(
+            Renderables([':x:', ':evergreen_tree']),
+            padding=(0, 0),
+            expand=True,
+            height=1
         )
-        return header_table
 
     async def on_mount(self, event: events.Mount) -> None:
         self.set_interval(1.0, callback=self.refresh)
