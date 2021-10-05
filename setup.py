@@ -12,5 +12,7 @@ setup(
     install_requires=['textual', 'click', 'rich'],
     entry_points={
         'console_scripts': ['pine = pineide.cli:cli']
-    }
+    },
+    long_description=open('README.md', 'r').read(),
+    long_description_content_type='text/markdown'
 )
