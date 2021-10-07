@@ -11,3 +11,4 @@ poetry.lock
 build/
 dist/
 *.egg-info
+/dev.py

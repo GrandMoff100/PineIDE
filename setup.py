@@ -9,5 +9,10 @@ setup(
     author='GrandMoff100',
     author_email='nlarsen23.student@gmail.com',
     description='An interactive Python IDE in your terminal',
-    install_requires=['textual', 'click', 'rich']
+    install_requires=['textual', 'click', 'rich'],
+    entry_points={
+        'console_scripts': ['pine = pineide.cli:cli']
+    },
+    long_description=open('README.md', 'r').read(),
+    long_description_content_type='text/markdown'
 )
