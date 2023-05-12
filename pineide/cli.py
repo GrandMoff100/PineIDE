@@ -1,8 +1,8 @@
 import click
-from .ide import PineIDE
+from pineide.ide import PineIDE
 
 
 @click.command()
-def cli():
+def main():
     """Run the IDE"""
     PineIDE.run(title="PineIDE")

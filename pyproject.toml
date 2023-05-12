@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pineide"
+version = "0.0.0"
+description = "An modern IDE in your terminal"
+authors = ["Nate <minecraftcrusher100@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+textual = "^0.24.1"
+click = "^8.1.3"
+
+[tool.poetry.scripts]
+pine = "pineide.cli:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
