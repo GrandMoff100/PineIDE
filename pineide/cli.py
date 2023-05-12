@@ -1,8 +1,10 @@
 import click
-from pineide.ide import PineIDE
+
+from pineide.pine import Pine
 
 
 @click.command()
-def main():
+@click.argument("path", default="./", type=click.Path(exists=True))
+def main(path: str):
     """Run the IDE"""
-    PineIDE.run(title="PineIDE")
+    Pine(path).run()
