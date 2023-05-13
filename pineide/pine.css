@@ -1,26 +1,53 @@
+$background: black;
+
 Screen {
-    background: $surface-darken-1;
+    background: $background;
 }
 
-#tree-view {
-    display: none; 
-    scrollbar-gutter: stable;
-    overflow: auto;    
-    width: auto;    
-    height: 100%;            
-    dock: left;       
+PineHeader {
+    dock: top;
+    width: 100%;
+    color: $text;
+    height: 3;
+    border: round white;
 }
 
-CodeBrowser.-show-tree #tree-view {
-    display: block;        
-    max-width: 50%;
+Icon {
+    dock: left;
+    padding: 0 1;
+    width: 8;
+    content-align: left middle;
 }
 
-
-#code-view {
-    overflow: auto scroll;  
-    min-width: 100%;        
+Title {
+    content-align: center middle;
+    width: 100%;
 }
-#code {
-    width: auto;    
+
+SideButtons {
+    text-align: center;
+    width: 6;
+    padding: 0 1;
+    height: 100%;
+    border: white;
+}
+
+Sidebar {
+    width: 25;
+    height: 100%;
+    border: white;
+}
+
+DirectoryTree {
+    background: $background;
+}
+
+FileTabs {
+    height: 60%;
+    border: white;
+}
+
+Terminal{
+    height: 35%;
+    border: white;
 }
