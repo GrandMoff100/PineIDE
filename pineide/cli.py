@@ -7,4 +7,4 @@ from pineide.pine import Pine
 @click.argument("path", default="./", type=click.Path(exists=True))
 def main(path: str):
     """Run the IDE"""
-    Pine(path).run()
+    Pine(path=path).run()
