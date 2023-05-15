@@ -8,46 +8,57 @@ PineHeader {
     dock: top;
     width: 100%;
     color: $text;
-    height: 3;
-    border: round white;
+    height: 2;
 }
 
 Icon {
     dock: left;
-    padding: 0 1;
-    width: 8;
     content-align: left middle;
+    width: 2;
+    background: $background;
 }
 
 Title {
     content-align: center middle;
     width: 100%;
+    background: $background;
 }
 
-SideButtons {
-    text-align: center;
-    width: 6;
-    padding: 0 1;
+
+Sidespace {
+    dock: left;
     height: 100%;
-    border: white;
+    width: 36;
 }
 
 Sidebar {
-    width: 25;
-    height: 100%;
-    border: white;
+    width: 28;
+}
+
+SidebarButtons {
+    width: 8;
+    margin-bottom: 1;
+    padding: 0 1;
+}
+
+Button.sidebar-button {
+    min-width: 6;
 }
 
 DirectoryTree {
     background: $background;
 }
 
+Body {
+    layout: grid;
+    grid-size: 1;
+    grid-rows: 3fr 1fr;
+}
+
 FileTabs {
-    height: 60%;
-    border: white;
+    height: 100%;
 }
 
 Terminal{
-    height: 35%;
-    border: white;
+    height: 100%;
 }

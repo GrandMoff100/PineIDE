@@ -9,6 +9,8 @@ from textual.widgets import Footer, Static, DirectoryTree
 from textual.widget import Widget
 
 from pineide.header import PineHeader
+from pineide.sidebar import Sidespace
+from pineide.panels import Files, VersionControl
 
 
 class Terminal(Static):
@@ -21,31 +23,10 @@ class FileTabs(Static):
         yield Static("example.py")
 
 
-class SideButtons(Static):
+class Body(Container):
     def compose(self) -> ComposeResult:
-        with Vertical():
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-            yield Static("📄")
-
-
-class Sidebar(Static):
-    def compose(self) -> ComposeResult:
-        yield DirectoryTree(path=self.app.path)
-
-    def _on_mount(self, _: events.Mount) -> None:
-        tree = self.query_one("DirectoryTree")
-        tree.show_root = False
-        tree.show_guides = False
-        tree.guide_depth = 1
+        yield FileTabs()
+        yield Terminal()
 
 
 class Pine(App):
@@ -55,6 +36,10 @@ class Pine(App):
     ]
 
     icon = Reactive("")
+    sidebar_panels = [
+        Files(),
+        VersionControl(),
+    ]
 
     def __init__(self, *, path: str, **kwargs):
         super().__init__(**kwargs)
@@ -66,9 +51,6 @@ class Pine(App):
         self.icon = "🌲"
         yield PineHeader(id="header")
         with Horizontal():
-            yield SideButtons()
-            yield Sidebar()
-            with Container():
-                yield FileTabs(id="file-tabs")
-                yield Terminal(id="terminal")
+            yield Sidespace()
+            yield Body()
         yield Footer()
