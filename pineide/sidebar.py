@@ -27,11 +27,18 @@ class SidebarButtons(Static):
 
 class Sidebar(Static):
     def compose(self) -> ComposeResult:
-        with ContentSwitcher(initial="files"):
+        with ContentSwitcher(initial="files", id="sidebar"):
             yield from self.app.sidebar_panels
+
 
 class Sidespace(Static):
     def compose(self) -> ComposeResult:
         with Horizontal():
             yield SidebarButtons()
             yield Sidebar()
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        for panel in self.app.sidebar_panels:
+            if panel.panel_id == event.button.id:
+                self.query_one("#sidebar").current = panel.panel_id
+                break

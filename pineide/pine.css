@@ -8,20 +8,19 @@ PineHeader {
     dock: top;
     width: 100%;
     color: $text;
-    height: 2;
+    height: 1;
+    background: $foreground 10%;
 }
 
 Icon {
     dock: left;
     content-align: left middle;
     width: 2;
-    background: $background;
 }
 
 Title {
     content-align: center middle;
     width: 100%;
-    background: $background;
 }
 
 
@@ -33,16 +32,22 @@ Sidespace {
 
 Sidebar {
     width: 28;
+    margin-left: 1;
 }
 
 SidebarButtons {
-    width: 8;
+    width: 6;
     margin-bottom: 1;
-    padding: 0 1;
+    background: $foreground 5%;
 }
+
 
 Button.sidebar-button {
     min-width: 6;
+}
+
+Button.sidebar-button:focus {
+    text-style: bold;
 }
 
 DirectoryTree {
@@ -57,8 +62,10 @@ Body {
 
 FileTabs {
     height: 100%;
+    background: $foreground 10%;
 }
 
 Terminal{
     height: 100%;
+    background: $foreground 5%;
 }
