@@ -12,15 +12,6 @@ from textual.reactive import Reactive
 from textual.widget import Widget
 
 
-class Icon(Widget):
-    """Display an 'icon' on the left of the header."""
-
-    icon = Reactive("")
-
-    def render(self) -> RenderResult:
-        return Text.from_markup(self.icon)
-
-
 class Title(Widget):
     """Display the title / subtitle in the header."""
 
@@ -28,10 +19,9 @@ class Title(Widget):
     sub_text = Reactive("")
 
     def render(self) -> RenderResult:
-        text = Text(self.text, no_wrap=True, overflow="ellipsis")
+        text = Text(self.text + self.icon, no_wrap=True, overflow="ellipsis")
         if self.sub_text:
-            text.append(" — ")
-            text.append(self.sub_text, "dim")
+            text.append(f' — "{self.sub_text}"', style="gray")
         return text
 
 
@@ -47,7 +37,6 @@ class PineHeader(Widget):
         super().__init__(name=name, id=id)
 
     def compose(self):
-        yield Icon()
         yield Title()
 
     def _on_mount(self, _: Mount) -> None:
@@ -58,7 +47,7 @@ class PineHeader(Widget):
             self.query_one(Title).sub_text = str(sub_title)
         
         def set_icon(icon: str) -> None:
-            self.query_one(Icon).icon = icon
+            self.query_one(Title).icon = icon
 
         self.watch(self.app, "title", set_title)
         self.watch(self.app, "sub_title", set_sub_title)
