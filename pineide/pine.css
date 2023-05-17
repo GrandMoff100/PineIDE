@@ -36,8 +36,17 @@ Sidebar {
 
 SidebarButtons {
     width: 6;
-    margin-bottom: 1;
     background: $panel-darken-1;
+}
+
+Sidespace.without-sidebar {
+    width: 6;
+    margin-right: 1;
+}
+
+Sidebar.hidden {
+    margin-left: 0;
+    display: none;
 }
 
 

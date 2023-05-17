@@ -27,7 +27,7 @@ class SidebarButtons(Static):
 
 class Sidebar(Static):
     def compose(self) -> ComposeResult:
-        with ContentSwitcher(initial="files", id="sidebar"):
+        with ContentSwitcher(initial="files", id="panels"):
             yield from self.app.sidebar_panels
 
 
@@ -40,5 +40,15 @@ class Sidespace(Static):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         for panel in self.app.sidebar_panels:
             if panel.panel_id == event.button.id:
-                self.query_one("#sidebar").current = panel.panel_id
+                panels = self.query_one("#panels")
+                sidebar = self.query_one(Sidebar)
+
+                if panels.current == panel.panel_id and sidebar.styles.display == "block":
+                    sidebar.add_class("hidden")
+                    self.add_class("without-sidebar")
+                else:
+                    sidebar.remove_class("hidden")
+                    self.remove_class("without-sidebar")
+
+                panels.current = panel.panel_id
                 break
