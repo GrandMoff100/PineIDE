@@ -42,13 +42,27 @@ class Sidespace(Static):
             if panel.panel_id == event.button.id:
                 panels = self.query_one("#panels")
                 sidebar = self.query_one(Sidebar)
-
                 if panels.current == panel.panel_id and sidebar.styles.display == "block":
-                    sidebar.add_class("hidden")
-                    self.add_class("without-sidebar")
+                    self.hide_sidebar()
                 else:
-                    sidebar.remove_class("hidden")
-                    self.remove_class("without-sidebar")
-
-                panels.current = panel.panel_id
+                    self.show_sidebar()
+                self.set_active_panel(panel.panel_id)
                 break
+
+    def on_mount(self, _: events.Mount) -> None:
+        self.hide_sidebar()
+
+    def set_active_panel(self, panel_id: str) -> None:
+        panels = self.query_one("#panels")
+        panels.current = panel_id
+
+    def hide_sidebar(self):
+        sidebar = self.query_one(Sidebar)
+        sidebar.add_class("hidden")
+        self.add_class("without-sidebar")
+
+    def show_sidebar(self):
+        sidebar = self.query_one(Sidebar)
+        sidebar.remove_class("hidden")
+        self.remove_class("without-sidebar")
+

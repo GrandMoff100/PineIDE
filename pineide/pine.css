@@ -65,12 +65,34 @@ Body {
     grid-gutter: 1;
 }
 
-FileTabs {
+Editor {
     height: 100%;
     background: $surface;
+    overflow: auto;
+}
+
+EmptyScreen {
+    content-align: center middle;
+    min-width: 80;
+}
+
+PineLogo {
+    content-align: center middle;
+    margin-top: 2;
+}
+
+#welcome {
+    content-align: center middle;
+    margin-top: 2;
+}
+
+#open {
+    content-align: center middle;
+    margin-top: 2;
 }
 
 Terminal{
-    height: 100%;
     background: $surface-darken-1;
+    height: 100%;
+    overflow: auto;
 }

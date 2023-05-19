@@ -3,14 +3,14 @@ from typing import Iterable
 
 from textual import events
 from textual.app import App, ComposeResult, RenderResult
-from textual.containers import Horizontal, Vertical, Container
+from textual.containers import Horizontal, Container
 from textual.reactive import Reactive
-from textual.widgets import Footer, Static, DirectoryTree
-from textual.widget import Widget
+from textual.widgets import Footer, Static
 
 from pineide.header import PineHeader
 from pineide.sidebar import Sidespace
 from pineide.panels import Files, VersionControl
+from pineide.editor import Editor
 
 
 class Terminal(Static):
@@ -18,14 +18,9 @@ class Terminal(Static):
         yield Static("Terminal")
 
 
-class FileTabs(Static):
-    def compose(self) -> ComposeResult:
-        yield Static("example.py")
-
-
 class Body(Container):
     def compose(self) -> ComposeResult:
-        yield FileTabs()
+        yield Editor(classes="empty-screen")
         yield Terminal()
 
 
@@ -51,6 +46,6 @@ class Pine(App):
         self.icon = "🌲"
         yield PineHeader(id="header")
         with Horizontal():
-            yield Sidespace()
+            yield Sidespace(shrink=True)
             yield Body()
         yield Footer()
