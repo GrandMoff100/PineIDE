@@ -6,12 +6,16 @@ from textual import events
 __all__ = ["Files"]
 
 
+class CustomDirectoryTree(DirectoryTree):
+    pass
+
+
 class Files(SidebarPanel):
     panel_id = "files"
     icon = "📁"
 
     def compose(self) -> ComposeResult:
-        yield DirectoryTree(path=self.app.path)
+        yield CustomDirectoryTree(path=self.app.path)
 
     def _on_mount(self, _: events.Mount) -> None:
         tree = self.query_one("DirectoryTree")

@@ -71,12 +71,12 @@ Editor {
     overflow: auto;
 }
 
-EmptyScreen {
+DefaultScreen {
     content-align: center middle;
-    min-width: 80;
+    min-width: 52;
 }
 
-PineLogo {
+#brand {
     content-align: center middle;
     margin-top: 2;
 }
@@ -93,6 +93,7 @@ PineLogo {
 
 Terminal{
     background: $surface-darken-1;
+    width: 100%;
     height: 100%;
     overflow: auto;
 }
