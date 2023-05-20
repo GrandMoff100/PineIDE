@@ -15,7 +15,7 @@ from pineide.editor import Editor
 
 class Terminal(Static):
     def compose(self) -> ComposeResult:
-        yield Static("Terminal")
+        yield Static("proxy terminal")
 
 
 class Body(Container):
